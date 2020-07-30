@@ -1,0 +1,15 @@
+{
+    "name": "acjbizar/logo",
+    "description": "My logo.",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "acj",
+            "email": "gitlab@acjs.net"
+        }
+    ],
+    "require": {
+        "meyfa/php-svg": "^0.10.0"
+    }
+}

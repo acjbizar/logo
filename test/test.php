@@ -1,5 +1,7 @@
 <?php
 
+define('ALPHA_DECIMALS', 1);
+
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
 use SVG\SVG;
@@ -30,6 +32,12 @@ header('Content-Type: image/svg+xml');
 
 echo $image;
 
+function draw_circle($x, $y, $r, $color) {
+    return (new SVGCircle($x, $y, $r))
+        ->setAttribute('fill', $color)
+        ->setAttribute('fill-opacity', get_alpha());
+}
+
 function draw_letter($letter, $r, $x, $y) {
     global $doc, $letters;
 
@@ -45,10 +53,7 @@ function draw_letter($letter, $r, $x, $y) {
             {
                 $color = get_color($letter);
 
-                $doc->addChild(
-                    (new SVGCircle($x, $y, $r))
-                        ->setStyle('fill', $color)
-                );
+                $doc->addChild(draw_circle($x, $y, $r, $color));
             } elseif($r > 5) {
                 draw_letter($letter, 5, $x, $y);
             }
@@ -61,27 +66,28 @@ function draw_letter($letter, $r, $x, $y) {
     }
 }
 
+function get_alpha() {
+    return $alpha = mt_rand(0, 5 * pow(10, ALPHA_DECIMALS - 1)) / pow(10, ALPHA_DECIMALS);
+}
+
 function get_color($letter = 0) {
     switch($letter) {
         case 0:
             $red = mt_rand(0, 255);
             $green = 255;
             $blue = 255;
-            $alpha = mt_rand(0, 500) / 1000;
             break;
         case 1:
             $red = 255;
             $green = mt_rand(0, 255);
             $blue = 255;
-            $alpha = mt_rand(0, 500) / 1000;
             break;
         case 2:
             $red = 255;
             $green = 255;
             $blue = mt_rand(0, 255);
-            $alpha = mt_rand(0, 500) / 1000;
             break;
     }
 
-    return 'rgba(' . implode(',', [$red, $green, $blue, $alpha]) . ')';
+    return sprintf("#%02x%02x%02x", $red, $green, $blue);
 }

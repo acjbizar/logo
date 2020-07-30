@@ -20,18 +20,18 @@ $d = $r * 2;
 $x = $r;
 $y = $r;
 
-draw_letter(0, $x, $y);
+draw_letter(0, $r, $x, $y);
 $x += $d * 4;
-draw_letter(1, $x, $y);
+draw_letter(1, $r, $x, $y);
 $y += $d * 4;
-draw_letter(2, $x, $y);
+draw_letter(2, $r, $x, $y);
 
 header('Content-Type: image/svg+xml');
 
 echo $image;
 
-function draw_letter($letter, $x, $y) {
-    global $doc, $letters, $r, $d;
+function draw_letter($letter, $r, $x, $y) {
+    global $doc, $letters, $d;
 
     for($j = 0; $j < 5; ++$j)
     {
@@ -39,12 +39,14 @@ function draw_letter($letter, $x, $y) {
         {
             if($letters[$letter][$j][$i] === 0)
             {
+                $color = get_color($letter);
+
                 $doc->addChild(
                     (new SVGCircle($x, $y, $r))
-                        ->setStyle('fill', '#ff0000')
+                        ->setStyle('fill', $color)
                 );
             } else {
-                draw_letter2($letter, $x, $y);
+                draw_letter2($letter, 5, $x, $y);
             }
 
             $x += $d;
@@ -55,10 +57,9 @@ function draw_letter($letter, $x, $y) {
     }
 }
 
-function draw_letter2($letter, $x, $y) {
+function draw_letter2($letter, $r, $x, $y) {
     global $doc, $letters;
 
-    $r = 5;
     $d = $r * 2;
     $x -= $d * 2;
     $y -= $d * 2;
@@ -69,12 +70,12 @@ function draw_letter2($letter, $x, $y) {
         {
             if($letters[$letter][$j][$i] === 0)
             {
+                $color = get_color($letter);
+
                 $doc->addChild(
                     (new SVGCircle($x, $y, $r))
-                        ->setStyle('fill', '#00ff00')
+                        ->setStyle('fill', $color)
                 );
-            } else {
-                //
             }
 
             $x += $d;
@@ -83,4 +84,29 @@ function draw_letter2($letter, $x, $y) {
         $y += $d;
         $x -= $d * 5;
     }
+}
+
+function get_color($letter = 0) {
+    switch($letter) {
+        case 0:
+            $red = mt_rand(0, 255);
+            $green = 255;
+            $blue = 255;
+            $alpha = mt_rand(0, 500) / 1000;
+            break;
+        case 1:
+            $red = 255;
+            $green = mt_rand(0, 255);
+            $blue = 255;
+            $alpha = mt_rand(0, 500) / 1000;
+            break;
+        case 2:
+            $red = 255;
+            $green = 255;
+            $blue = mt_rand(0, 255);
+            $alpha = mt_rand(0, 500) / 1000;
+            break;
+    }
+
+    return 'rgba(' . implode(',', [$red, $green, $blue, $alpha]) . ')';
 }

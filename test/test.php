@@ -17,8 +17,8 @@ $doc = $image->getDocument();
 $letter = 0;
 $r = 25;
 $d = $r * 2;
-$x = $r;
-$y = $r;
+$x = $r * 5;
+$y = $r * 5;
 
 draw_letter(0, $r, $x, $y);
 $x += $d * 4;
@@ -31,33 +31,6 @@ header('Content-Type: image/svg+xml');
 echo $image;
 
 function draw_letter($letter, $r, $x, $y) {
-    global $doc, $letters, $d;
-
-    for($j = 0; $j < 5; ++$j)
-    {
-        for($i = 0; $i < 5; ++$i)
-        {
-            if($letters[$letter][$j][$i] === 0)
-            {
-                $color = get_color($letter);
-
-                $doc->addChild(
-                    (new SVGCircle($x, $y, $r))
-                        ->setStyle('fill', $color)
-                );
-            } else {
-                draw_letter2($letter, 5, $x, $y);
-            }
-
-            $x += $d;
-        }
-
-        $y += $d;
-        $x -= $d * 5;
-    }
-}
-
-function draw_letter2($letter, $r, $x, $y) {
     global $doc, $letters;
 
     $d = $r * 2;
@@ -76,6 +49,8 @@ function draw_letter2($letter, $r, $x, $y) {
                     (new SVGCircle($x, $y, $r))
                         ->setStyle('fill', $color)
                 );
+            } elseif($r > 5) {
+                draw_letter($letter, 5, $x, $y);
             }
 
             $x += $d;

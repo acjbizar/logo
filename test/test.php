@@ -6,6 +6,7 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 use SVG\SVG;
 use SVG\Nodes\Shapes\SVGCircle;
+use SVG\Nodes\Embedded\SVGImage;
 
 $letters = [];
 $letters[0] = [[0,1,1,1,0],[1,0,0,0,1],[1,1,1,1,1],[1,0,0,0,1],[1,0,0,0,1]]; // A
@@ -27,6 +28,8 @@ $x += $d * 4;
 draw_letter(1, $r, $x, $y);
 $y += $d * 4;
 draw_letter(2, $r, $x, $y);
+
+$doc->addChild(new SVGImage('logo-dots.png', 0, 0, 449, 449));
 
 if(isset($_GET['save'])) file_put_contents('../dist/logo.svg', $image);
 

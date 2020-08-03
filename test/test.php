@@ -17,7 +17,7 @@ $letters[3] = [[0,1,1,1,1],[1,0,0,0,0],[0,1,1,1,0],[0,0,0,0,1],[1,1,1,1,0]]; // 
 $image = new SVG(450, 450);
 $doc = $image->getDocument();
 
-$doc->addChild(new SVGImage('logo-dots.png', 1, 1, 449, 449));
+$doc->addChild(new SVGImage('https://acjs.net/images/logo-dots.png', 1, 1, 449, 449));
 
 $letter = 0;
 $r = 25;

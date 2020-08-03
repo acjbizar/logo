@@ -28,6 +28,8 @@ draw_letter(1, $r, $x, $y);
 $y += $d * 4;
 draw_letter(2, $r, $x, $y);
 
+if(isset($_GET['save'])) file_put_contents('../dist/logo.svg', $image);
+
 header('Content-Type: image/svg+xml');
 
 echo $image;

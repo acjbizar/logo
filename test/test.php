@@ -17,6 +17,8 @@ $letters[3] = [[0,1,1,1,1],[1,0,0,0,0],[0,1,1,1,0],[0,0,0,0,1],[1,1,1,1,0]]; // 
 $image = new SVG(450, 450);
 $doc = $image->getDocument();
 
+$doc->addChild(new SVGImage('logo-dots.png', 1, 1, 449, 449));
+
 $letter = 0;
 $r = 25;
 $d = $r * 2;
@@ -28,8 +30,6 @@ $x += $d * 4;
 draw_letter(1, $r, $x, $y);
 $y += $d * 4;
 draw_letter(2, $r, $x, $y);
-
-$doc->addChild(new SVGImage('logo-dots.png', 0, 0, 449, 449));
 
 if(isset($_GET['save'])) file_put_contents('../dist/logo.svg', $image);
 

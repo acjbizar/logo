@@ -37,10 +37,21 @@ header('Content-Type: image/svg+xml');
 
 echo $image;
 
-function draw_circle($x, $y, $r, $color) {
+function draw_circle($x, $y, $r, $letter) {
+    switch($letter) {
+        case 0:
+            $char = 'a';
+            break;
+        case 1:
+            $char = 'c';
+            break;
+        case 2:
+            $char = 'j';
+            break;
+    }
+
     return (new SVGCircle($x, $y, $r))
-        ->setAttribute('fill', $color)
-        ->setAttribute('fill-opacity', get_alpha());
+        ->setAttribute('class', $char);
 }
 
 function draw_letter($letter, $r, $x, $y) {
@@ -56,9 +67,7 @@ function draw_letter($letter, $r, $x, $y) {
         {
             if($letters[$letter][$j][$i] === 0)
             {
-                $color = get_color($letter);
-
-                $doc->addChild(draw_circle($x, $y, $r, $color));
+                $doc->addChild(draw_circle($x, $y, $r, $letter));
             } elseif($r > 5) {
                 draw_letter($letter, 5, $x, $y);
             }

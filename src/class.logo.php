@@ -31,14 +31,14 @@ namespace ACJs {
 			$x = $r * 5;
 			$y = $r * 5;
 
-			$this->draw_letter(0, $r, $x, $y);
+			$this->drawLetter(0, $r, $x, $y);
 			$x += $d * 4;
-			$this->draw_letter(1, $r, $x, $y);
+			$this->drawLetter(1, $r, $x, $y);
 			$y += $d * 4;
-			$this->draw_letter(2, $r, $x, $y);
+			$this->drawLetter(2, $r, $x, $y);
 		}
 
-		public function draw_circle($x, $y, $r, $letter) {
+		public function drawCircle($x, $y, $r, $letter) {
 			switch($letter) {
 				case 0:
 					$char = 'a';
@@ -55,7 +55,7 @@ namespace ACJs {
 				->setAttribute('class', $char);
 		}
 
-		public function draw_letter($letter, $r, $x, $y) {
+		public function drawLetter($letter, $r, $x, $y) {
 			$d = $r * 2;
 			$x -= $d * 2;
 			$y -= $d * 2;
@@ -66,9 +66,9 @@ namespace ACJs {
 				{
 					if($this->letters[$letter][$j][$i] === 0)
 					{
-						$this->doc->addChild($this->draw_circle($x, $y, $r, $letter));
+						$this->doc->addChild($this->drawCircle($x, $y, $r, $letter));
 					} elseif($r > 5) {
-						$this->draw_letter($letter, 5, $x, $y);
+						$this->drawLetter($letter, 5, $x, $y);
 					}
 
 					$x += $d;
@@ -79,11 +79,11 @@ namespace ACJs {
 			}
 		}
 
-		public function get_alpha() {
+		public function getAlpha() {
 			return $alpha = mt_rand(0, 5 * pow(10, self::ALPHA_DECIMALS - 1)) / pow(10, self::ALPHA_DECIMALS);
 		}
 
-		public function get_color($letter = 0) {
+		public function getColor($letter = 0) {
 			switch($letter) {
 				case 0:
 					$red = mt_rand(0, 255);

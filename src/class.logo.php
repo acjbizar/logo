@@ -114,7 +114,3 @@ class Logo {
 		file_put_contents($filename, $this->image);
 	}
 }
-
-$logo = new Logo;
-if(isset($_GET['save'])) $logo->save();
-$logo->parse();

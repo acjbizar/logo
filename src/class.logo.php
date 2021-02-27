@@ -22,6 +22,7 @@ namespace ACJs {
 
 			$this->image = new SVG(450, 450);
 			$this->doc = $this->image->getDocument();
+			$this->doc->setAttribute('class', 'logo--acjs');
 
 			$this->doc->addChild(new SVGImage('https://acjs.net/images/logo-dots.png', 1, 1, 449, 449));
 

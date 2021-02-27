@@ -12,6 +12,7 @@ namespace ACJs {
 	class Logo {
 		const ALPHA_DECIMALS = 1;
 
+		public $functions = [];
 		public $letters = [];
 
 		public function __construct() {
@@ -25,18 +26,6 @@ namespace ACJs {
 			$this->doc->setAttribute('class', 'logo--acjs');
 
 			$this->doc->addChild(new SVGImage('https://acjs.net/images/logo-dots.png', 1, 1, 449, 449));
-
-			$letter = 0;
-			$r = 25;
-			$d = $r * 2;
-			$x = $r * 5;
-			$y = $r * 5;
-
-			$this->drawLetter(0, $r, $x, $y);
-			$x += $d * 4;
-			$this->drawLetter(1, $r, $x, $y);
-			$y += $d * 4;
-			$this->drawLetter(2, $r, $x, $y);
 		}
 
 		public function drawCircle($x, $y, $r, $letter) {
@@ -52,8 +41,16 @@ namespace ACJs {
 					break;
 			}
 
-			return (new SVGCircle($x, $y, $r))
-				->setAttribute('class', $char);
+			$circle = new SVGCircle($x, $y, $r);
+			$circle->setAttribute('class', $char);
+
+			if(!empty($this->functions['letter'][$char])) {
+				foreach($this->functions['letter'][$char] as $key => $value) {
+					$circle -> setAttribute($key, $value);
+				}
+			}
+
+			return $circle;
 		}
 
 		public function drawLetter($letter, $r, $x, $y) {
@@ -78,6 +75,19 @@ namespace ACJs {
 				$y += $d;
 				$x -= $d * 5;
 			}
+		}
+
+		public function drawLogo() {
+			$r = 25;
+			$d = $r * 2;
+			$x = $r * 5;
+			$y = $r * 5;
+
+			$this->drawLetter(0, $r, $x, $y);
+			$x += $d * 4;
+			$this->drawLetter(1, $r, $x, $y);
+			$y += $d * 4;
+			$this->drawLetter(2, $r, $x, $y);
 		}
 
 		public function getAlpha() {
@@ -107,13 +117,21 @@ namespace ACJs {
 		}
 
 		public function parse() {
+			$this->drawLogo();
+
 			header('Content-Type: image/svg+xml');
 
 			echo $this->image;
 		}
 
 		public function save($filename = '../dist/logo.svg') {
+			$this->drawLogo();
+
 			file_put_contents($filename, $this->image);
+		}
+
+		public function setFunction($what, $which, $attributes) {
+			$this->functions[$what][$which] = $attributes;
 		}
 	}
 }

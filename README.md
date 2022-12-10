@@ -21,7 +21,7 @@
 ## Usage
 
 ```php
-$logo = new ACJs\Logo;
+$logo = new Acj\Logo\Logo;
 $logo->parse();
 ```
 

@@ -1,7 +1,7 @@
 <?php
 
-require_once '../src/class.logo.php';
+require_once '../src/Logo.php';
 
-$logo = new ACJs\Logo;
+$logo = new Acj\Logo\Logo;
 if(isset($_GET['save'])) $logo->save();
 $logo->parse();

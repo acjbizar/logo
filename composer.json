@@ -3,6 +3,11 @@
     "description": "My logo.",
     "type": "project",
     "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Acj\\Logo\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "acj",

@@ -18,6 +18,12 @@
 00000 01110
 ```
 
+## Installation
+
+```shell
+composer require acj/logo
+```
+
 ## Usage
 
 ```php

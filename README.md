@@ -27,9 +27,11 @@ composer require acj/logo
 ## Usage
 
 ```php
-$logo = new Acj\Logo\Logo;
+$logo = new Acj\Logo;
 $logo->parse();
 ```
+
+(To parse the logo inline (without XML declaration), just echo ``$logo``.)
 
 ## Example
 

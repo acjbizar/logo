@@ -38,6 +38,16 @@ class Logo {
         $this->drawLetter(2, $r, $x, $y);
     }
 
+    public function __toString(): string
+    {
+        return strval($this->image);
+    }
+
+    public function build(): SVG
+    {
+        return $this->image;
+    }
+
     public function drawCircle($x, $y, $r, $letter): SVGCircle
     {
         switch($letter) {
@@ -110,7 +120,7 @@ class Logo {
     public function parse() {
         header('Content-Type: image/svg+xml');
 
-        echo $this->image;
+        echo $this->build();
     }
 
     public function save($filename = '../dist/logo.svg') {

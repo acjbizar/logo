@@ -7,6 +7,7 @@ namespace Acj;
 use SVG\SVG;
 use SVG\Nodes\Shapes\SVGCircle;
 use SVG\Nodes\Embedded\SVGImage;
+use SVG\Writing\SVGWriter;
 
 class Logo {
     const ALPHA_DECIMALS = 1;
@@ -40,12 +41,15 @@ class Logo {
 
     public function __toString(): string
     {
-        return strval($this->image);
+        return $this->build(false);
     }
 
-    public function build(): SVG
+    public function build($standalone = true): string
     {
-        return $this->image;
+        $writer = new SVGWriter($standalone);
+        $writer->writeNode($this->doc);
+
+        return $writer->getString();
     }
 
     public function drawCircle($x, $y, $r, $letter): SVGCircle
@@ -60,6 +64,8 @@ class Logo {
             case 2:
                 $char = 'j';
                 break;
+            default:
+                $chars = '';
         }
 
         return (new SVGCircle($x, $y, $r))
@@ -120,7 +126,7 @@ class Logo {
     public function parse() {
         header('Content-Type: image/svg+xml');
 
-        echo $this->build();
+        echo $this->build(true);
     }
 
     public function save($filename = '../dist/logo.svg') {

@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Acj;
 
-include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
-
 use SVG\SVG;
 use SVG\Nodes\Shapes\SVGCircle;
 use SVG\Nodes\Embedded\SVGImage;

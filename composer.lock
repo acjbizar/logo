@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1fe77c440205605f63ab7f2185c7761",
+    "content-hash": "e426bf7316a2ddb88c9e250aa11f78b5",
     "packages": [
         {
             "name": "meyfa/php-svg",
@@ -53,6 +53,10 @@
             "keywords": [
                 "svg"
             ],
+            "support": {
+                "issues": "https://github.com/meyfa/php-svg/issues",
+                "source": "https://github.com/meyfa/php-svg/tree/master"
+            },
             "time": "2020-06-28T00:35:23+00:00"
         }
     ],
@@ -63,5 +67,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

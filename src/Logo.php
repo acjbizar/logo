@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Acj\Logo;
+namespace Acj;
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
@@ -40,7 +40,8 @@ class Logo {
         $this->drawLetter(2, $r, $x, $y);
     }
 
-    public function drawCircle($x, $y, $r, $letter) {
+    public function drawCircle($x, $y, $r, $letter): SVGCircle
+    {
         switch($letter) {
             case 0:
                 $char = 'a';

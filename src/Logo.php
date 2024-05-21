@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Acj;
 
+use SVG\Nodes\Shapes\SVGRect;
 use SVG\SVG;
 use SVG\Nodes\Shapes\SVGCircle;
 use SVG\Nodes\Embedded\SVGImage;
@@ -11,6 +12,7 @@ use SVG\Writing\SVGWriter;
 
 class Logo {
     const ALPHA_DECIMALS = 1;
+    const BACKGROUND_COLOR = '#221e1f';
 
     public $letters = [];
 
@@ -24,6 +26,10 @@ class Logo {
         $this->doc = $this->image->getDocument();
         $this->doc->setAttribute('class', 'logo--acjs');
 
+        $rect = new SVGRect(0, 0, '100%', '100%');
+        $rect->setAttribute('fill', self::BACKGROUND_COLOR);
+
+        $this->doc->addChild($rect);
         $this->doc->addChild(new SVGImage('https://acjs.net/images/logo-dots.png', 1, 1, 449, 449));
 
         $letter = 0;
@@ -69,7 +75,9 @@ class Logo {
         }
 
         return (new SVGCircle($x, $y, $r))
-            ->setAttribute('class', $char);
+            ->setAttribute('class', $char)
+            ->setAttribute('fill', $this->getColor($letter))
+            ->setAttribute('fill-opacity', $this->getAlpha());
     }
 
     public function drawLetter($letter, $r, $x, $y) {
@@ -150,6 +158,6 @@ class Logo {
     }
 
     public function toRasterImage() {
-        return $this->image->toRasterImage($this->getWidth(), $this->getHeight(), '#221e1f');
+        return $this->image->toRasterImage(intval($this->getWidth()), intval($this->getHeight()), self::BACKGROUND_COLOR);
     }
 }

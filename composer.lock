@@ -4,29 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae3b81390e4dd3831a9709f7068421ce",
+    "content-hash": "2792140a352a99a09e4a560a16a945f2",
     "packages": [
         {
             "name": "meyfa/php-svg",
-            "version": "v0.10.0",
+            "version": "v0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/meyfa/php-svg.git",
-                "reference": "acc4cd9d4a10eb99af92fe4279b3ee7015b0944f"
+                "reference": "51251be24fe6415ef3275a7d47ab5c44c8b5674b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/acc4cd9d4a10eb99af92fe4279b3ee7015b0944f",
-                "reference": "acc4cd9d4a10eb99af92fe4279b3ee7015b0944f",
+                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/51251be24fe6415ef3275a7d47ab5c44c8b5674b",
+                "reference": "51251be24fe6415ef3275a7d47ab5c44c8b5674b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=7.4.0"
             },
             "require-dev": {
-                "meyfa/phpunit-assert-gd": "^1.1",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "^4.8"
+                "meyfa/phpunit-assert-gd": "^v3.0.0",
+                "phpmd/phpmd": "^2.15.0",
+                "phpunit/phpunit": "^9.6.16",
+                "rector/rector": "^1.0"
             },
             "suggest": {
                 "ext-gd": "Needed to rasterize images",
@@ -45,7 +46,7 @@
             "authors": [
                 {
                     "name": "Fabian Meyer",
-                    "homepage": "http://meyfa.net"
+                    "homepage": "https://meyfa.net"
                 }
             ],
             "description": "Read, edit, write, and render SVG files with PHP",
@@ -55,9 +56,15 @@
             ],
             "support": {
                 "issues": "https://github.com/meyfa/php-svg/issues",
-                "source": "https://github.com/meyfa/php-svg/tree/master"
+                "source": "https://github.com/meyfa/php-svg/tree/v0.15.0"
             },
-            "time": "2020-06-28T00:35:23+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/meyfa",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-17T17:47:21+00:00"
         }
     ],
     "packages-dev": [],

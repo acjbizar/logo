@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "meyfa/php-svg": "^0.10.0",
+        "meyfa/php-svg": "*",
         "ext-gd": "*"
     }
 }

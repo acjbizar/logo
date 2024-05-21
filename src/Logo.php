@@ -123,6 +123,14 @@ class Logo {
         return sprintf("#%02x%02x%02x", $red, $green, $blue);
     }
 
+    public function getHeight() {
+        return $this->image->getDocument()->getHeight();
+    }
+
+    public function getWidth() {
+        return $this->image->getDocument()->getWidth();
+    }
+
     public function parse() {
         header('Content-Type: image/svg+xml');
 
@@ -139,5 +147,9 @@ class Logo {
 
     public function setWidth($width = 450) {
         $this->image->getDocument()->setWidth($width);
+    }
+
+    public function toRasterImage() {
+        return $this->image->toRasterImage($this->getWidth(), $this->getHeight(), '#221e1f');
     }
 }

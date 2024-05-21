@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e426bf7316a2ddb88c9e250aa11f78b5",
+    "content-hash": "ae3b81390e4dd3831a9709f7068421ce",
     "packages": [
         {
             "name": "meyfa/php-svg",
@@ -66,7 +66,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-gd": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

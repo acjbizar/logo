@@ -27,7 +27,7 @@ class Logo {
         $this->doc->setAttribute('class', 'logo--acjs');
 
         $rect = new SVGRect(0, 0, '100%', '100%');
-        $rect->setAttribute('fill', self::BACKGROUND_COLOR);
+        $rect->setStyle('fill', self::BACKGROUND_COLOR);
 
         $this->doc->addChild($rect);
         $this->doc->addChild(new SVGImage('https://acjs.net/images/logo-dots.png', 1, 1, 449, 449));
@@ -76,8 +76,8 @@ class Logo {
 
         return (new SVGCircle($x, $y, $r))
             ->setAttribute('class', $char)
-            ->setAttribute('fill', $this->getColor($letter))
-            ->setAttribute('fill-opacity', $this->getAlpha());
+            ->setStyle('fill', $this->getColor($letter))
+            ->setStyle('fill-opacity', $this->getAlpha());
     }
 
     public function drawLetter($letter, $r, $x, $y) {

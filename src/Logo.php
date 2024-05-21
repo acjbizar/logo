@@ -132,4 +132,12 @@ class Logo {
     public function save($filename = '../dist/logo.svg') {
         file_put_contents($filename, $this->image);
     }
+
+    public function setHeight($height = 450) {
+        $this->image->getDocument()->setHeight($height);
+    }
+
+    public function setWidth($width = 450) {
+        $this->image->getDocument()->setWidth($width);
+    }
 }

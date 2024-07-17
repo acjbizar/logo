@@ -19,13 +19,24 @@ class Logo {
     public $doc;
     public $image;
 
-    public function __construct() {
+    public function __construct($orientation = null) {
+        if($orientation === 'horizontal') {
+            $width = 650;
+            $height = 250;
+        } elseif($orientation === 'vertical') {
+            $width = 250;
+            $height = 650;
+        } else {
+            $width = 450;
+            $height = 450;
+        }
+
         $this->letters[0] = [[0,1,1,1,0],[1,0,0,0,1],[1,1,1,1,1],[1,0,0,0,1],[1,0,0,0,1]]; // A
         $this->letters[1] = [[0,1,1,1,1],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[0,1,1,1,1]]; // C
         $this->letters[2] = [[0,1,1,1,1],[0,0,0,0,1],[0,0,0,0,1],[1,0,0,0,1],[0,1,1,1,0]]; // J
         $this->letters[3] = [[0,1,1,1,1],[1,0,0,0,0],[0,1,1,1,0],[0,0,0,0,1],[1,1,1,1,0]]; // s
 
-        $this->image = new SVG(450, 450);
+        $this->image = new SVG($width, $height);
         $this->doc = $this->image->getDocument();
         $this->doc->setAttribute('class', 'logo--acjs');
 
@@ -42,9 +53,21 @@ class Logo {
         $y = $r * 5;
 
         $this->drawLetter(0, $r, $x, $y);
-        $x += $d * 4;
+
+        if($orientation === 'vertical') {
+            $y += $d * 4;
+        } else {
+            $x += $d * 4;
+        }
+
         $this->drawLetter(1, $r, $x, $y);
-        $y += $d * 4;
+
+        if($orientation === 'horizontal') {
+            $x += $d * 4;
+        } else {
+            $y += $d * 4;
+        }
+
         $this->drawLetter(2, $r, $x, $y);
     }
 

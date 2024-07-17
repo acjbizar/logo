@@ -16,6 +16,9 @@ class Logo {
 
     public $letters = [];
 
+    public $doc;
+    public $image;
+
     public function __construct() {
         $this->letters[0] = [[0,1,1,1,0],[1,0,0,0,1],[1,1,1,1,1],[1,0,0,0,1],[1,0,0,0,1]]; // A
         $this->letters[1] = [[0,1,1,1,1],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[0,1,1,1,1]]; // C
